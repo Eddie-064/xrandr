@@ -137,7 +137,7 @@ usage(void)
            "      --below <output>\n"
            "      --same-as <output>\n"
            "      --set <property> <value>\n"
-           "      --scale <x>x<y>\n"
+           "      --scale <x>[x<y>]\n"
            "      --scale-from <w>x<h>\n"
            "      --transform <a>,<b>,<c>,<d>,<e>,<f>,<g>,<h>,<i>\n"
            "      --filter nearest,bilinear\n"
@@ -3017,7 +3017,11 @@ main (int argc, char **argv)
 	    if (!config_output) argerr ("%s must be used after --output\n", argv[i]);
 	    if (++i >= argc) argerr ("%s requires an argument\n", argv[i-1]);
 	    if (sscanf (argv[i], "%lfx%lf", &sx, &sy) != 2)
-		argerr ("failed to parse '%s' as a scaling factor\n", argv[i]);
+	    {
+		if (sscanf (argv[i], "%lf", &sx) != 1)
+		    argerr ("failed to parse '%s' as a scaling factor\n", argv[i]);
+		sy = sx;
+	    }
 	    init_transform (&config_output->transform);
 	    config_output->transform.transform.matrix[0][0] = XDoubleToFixed (sx);
 	    config_output->transform.transform.matrix[1][1] = XDoubleToFixed (sy);

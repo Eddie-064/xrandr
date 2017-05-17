@@ -34,7 +34,7 @@ xrandr \- primitive command line interface to RandR extension
 [\-\-current]
 [\-\-noprimary]
 [\-\-panning \fIwidth\fPx\fIheight\fP[+\fIx\fP+\fIy\fP[/\fItrack_width\fPx\fItrack_height\fP+\fItrack_x\fP+\fItrack_y\fP[/\fIborder_left\fP/\fIborder_top\fP/\fIborder_right\fP/\fIborder_bottom\fP]]]]
-[\-\-scale \fIx\fPx\fIy\fP]
+[\-\-scale \fIx\fP[x\fIy\fP]]
 [\-\-scale-from \fIw\fPx\fIh\fP]
 [\-\-transform \fIa\fP,\fIb\fP,\fIc\fP,\fId\fP,\fIe\fP,\fIf\fP,\fIg\fP,\fIh\fP,\fIi\fP]
 [\-\-primary]
@@ -207,8 +207,9 @@ values are used (a unit matrix without filter).
 Chooses the scaling filter method to be applied when the screen is scaled or
 transformed.
 Can be either 'bilinear' or 'nearest'.
-.IP "\-\-scale \fIx\fPx\fIy\fP"
-Changes the dimensions of the output picture. Values superior to 1 will lead to
+.IP "\-\-scale \fIx\fP[x\fIy\fP]"
+Changes the dimensions of the output picture. If the \fIy\fP value is omitted,
+the \fIx\fP value will be used for both dimensions. Values superior to 1 will lead to
 a compressed screen (screen dimension bigger than the dimension of the output
 mode), and values below 1 leads to a zoom in on the output. This option is
 actually a shortcut version of the \fI\-\-transform\fP option.
