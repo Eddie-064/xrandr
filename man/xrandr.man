@@ -208,11 +208,12 @@ Chooses the scaling filter method to be applied when the screen is scaled or
 transformed.
 Can be either 'bilinear' or 'nearest'.
 .IP "\-\-scale \fIx\fP[x\fIy\fP]"
-Changes the dimensions of the output picture. If the \fIy\fP value is omitted,
-the \fIx\fP value will be used for both dimensions. Values superior to 1 will lead to
-a compressed screen (screen dimension bigger than the dimension of the output
-mode), and values below 1 leads to a zoom in on the output. This option is
-actually a shortcut version of the \fI\-\-transform\fP option.
+Changes the dimensions of the output picture.
+If the \fIy\fP value is omitted, the \fIx\fP value will be used for both dimensions.
+Values larger than 1 lead to a compressed screen (screen dimension bigger
+than the dimension of the output mode), and values less than 1 lead to
+a zoom in on the output.
+This option is actually a shortcut version of the \fI\-\-transform\fP option.
 .IP "\-\-scale-from \fIw\fPx\fIh\fP"
 Specifies the size in pixels of the area of the framebuffer to be displayed on
 this output.
