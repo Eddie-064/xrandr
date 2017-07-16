@@ -3014,11 +3014,12 @@ main (int argc, char **argv)
 	if (!strcmp ("--scale", argv[i]))
 	{
 	    double  sx, sy;
+	    char junk;
 	    if (!config_output) argerr ("%s must be used after --output\n", argv[i]);
 	    if (++i >= argc) argerr ("%s requires an argument\n", argv[i-1]);
-	    if (sscanf (argv[i], "%lfx%lf", &sx, &sy) != 2)
+	    if (sscanf (argv[i], "%lfx%lf%c", &sx, &sy, &junk) != 2)
 	    {
-		if (sscanf (argv[i], "%lf", &sx) != 1)
+		if (sscanf (argv[i], "%lf%c", &sx, &junk) != 1)
 		    argerr ("failed to parse '%s' as a scaling factor\n", argv[i]);
 		sy = sx;
 	    }
