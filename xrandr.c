@@ -3927,6 +3927,12 @@ main (int argc, char **argv)
 		for (j = 0; j < output_info->nmode; j++)
 		{
 		    XRRModeInfo	*mode = find_mode_by_xid (output_info->modes[j]);
+		    if (!mode)
+		    {
+			printf ("  [Unknown mode ID 0x%x]\n",
+				(int)output_info->modes[j]);
+			continue;
+		    }
 
 		    print_verbose_mode (mode, mode == output->mode_info,
 					j < output_info->npreferred);
@@ -3941,16 +3947,23 @@ main (int argc, char **argv)
 		{
 		    XRRModeInfo *jmode, *kmode;
 		    int k;
-		    
+
 		    if (mode_shown[j]) continue;
-    
+
 		    jmode = find_mode_by_xid (output_info->modes[j]);
+		    if (!jmode)
+		    {
+			printf ("   [Unknown mode ID 0x%x]\n",
+				(int)output_info->modes[j]);
+			continue;
+		    }
 		    printf (" ");
 		    printf ("  %-12s", jmode->name);
 		    for (k = j; k < output_info->nmode; k++)
 		    {
 			if (mode_shown[k]) continue;
 			kmode = find_mode_by_xid (output_info->modes[k]);
+			if (!kmode) continue;
 			if (strcmp (jmode->name, kmode->name) != 0) continue;
 			mode_shown[k] = True;
 			kmode->modeFlags |= ModeShown;
