@@ -72,6 +72,10 @@ xrandr \- primitive command line interface to RandR extension
 [\-\-listproviders]
 [\-\-setprovideroutputsource \fIprovider\fP \fIsource\fP]
 [\-\-setprovideroffloadsink \fIprovider\fP \fIsink\fP]
+[\-\-listmonitors]
+[\-\-listactivemonitors]
+[\-\-setmonitor \fIname\fP \fIgeometry\fP \fIoutputs\fP]
+[\-\-delmonitor \fIname\fP]
 .SH DESCRIPTION
 .I Xrandr
 is used to set the size, orientation and/or reflection of the outputs for a
@@ -117,6 +121,25 @@ is available.
 .IP \-\-q12
 Forces the usage of the RandR version 1.2 protocol, even if the display does
 not report it as supported or a higher version is available.
+.PP
+.SH "RandR version 1.5 options"
+.PP
+Options for RandR 1.5 are used as a superset of the options for RandR 1.4.
+.PP
+.IP \-\-listmonitors
+Report information about all defined monitors.
+.IP \-\-listactivemonitors
+Report information about currently active monitors.
+.IP "\-\-setmonitor \fIname\fP \fIgeometry\fP \fIoutputs\fP"} {none|\fIoutput\fP,\fIoutput\fP,...}\n"
+Define a new monitor with the given geometry and associated to the given outputs.
+The output list is either the keyword \fBnone\fP or a comma-separated list of outputs.
+The geometry is either the keyword \fBauto\fP, in which case the monitor
+will automatically track the geometry of the associated outputs, or a manual specification
+in the form
+\fIw\fP/\fImmw\fPx\fIh\fP/\fImmh\fP+\fIx\fP+\fIy\fP
+where w, h, x, y are in pixels and mmw, mmh are the physical dimensions of the monitor.
+.IP "\-\-delmonitor \fIname\fP"
+Delete the given user-defined monitor.
 .PP
 .SH "RandR version 1.4 options"
 .PP
