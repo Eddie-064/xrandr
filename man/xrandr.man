@@ -63,7 +63,7 @@ xrandr \- primitive command line interface to RandR extension
 [\-\-set \fIproperty\fP \fIvalue\fP]
 [\-\-off]
 [\-\-crtc \fIcrtc\fP]
-[\-\-gamma \fIred\fP:\fIgreen\fP:\fIblue\fP]
+[\-\-gamma \fIred\fP[:\fIgreen\fP:\fIblue\fP]]
 [\-\-brightness \fIbrightness\fP]
 [\-o \fIorientation\fP]
 [\-s \fIsize\fP]
@@ -303,9 +303,12 @@ Uses the specified crtc (either as an index in the list of CRTCs or XID).
 In normal usage, this option is not required as xrandr tries to make
 sensible choices about which crtc to use with each output. When that fails
 for some reason, this option can override the normal selection.
-.IP "\-\-gamma \fIred\fP:\fIgreen\fP:\fIblue\fP"
+.IP "\-\-gamma \fIred\fP[:\fIgreen\fP:\fIblue\fP]"
 Set the specified floating point values as gamma correction on the crtc
-currently attached to this output. Note that you cannot get two different values
+currently attached to this output.
+If green and blue are not specified, the red value will be used
+for all three components.
+Note that you cannot get two different values
 for cloned outputs (i.e.: which share the same crtc) and that switching an output to another crtc doesn't change
 the crtc gamma corrections at all.
 .IP "\-\-brightness \fIbrightness\fP"

@@ -144,7 +144,7 @@ usage(void)
            "      --off\n"
            "      --crtc <crtc>\n"
            "      --panning <w>x<h>[+<x>+<y>[/<track:w>x<h>+<x>+<y>[/<border:l>/<t>/<r>/<b>]]]\n"
-           "      --gamma <r>:<g>:<b>\n"
+           "      --gamma <r>[:<g>:<b>]\n"
            "      --brightness <value>\n"
            "      --primary\n"
            "  --noprimary\n"
@@ -2967,11 +2967,18 @@ main (int argc, char **argv)
 	    continue;
 	}
 	if (!strcmp ("--gamma", argv[i])) {
+	    char junk;
 	    if (!config_output) argerr ("%s must be used after --output\n", argv[i]);
 	    if (++i >= argc) argerr ("%s requires an argument\n", argv[i-1]);
-	    if (sscanf(argv[i], "%f:%f:%f", &config_output->gamma.red,
-		    &config_output->gamma.green, &config_output->gamma.blue) != 3)
-		argerr ("%s: invalid argument '%s'\n", argv[i-1], argv[i]);
+	    if (sscanf(argv[i], "%f:%f:%f%c", &config_output->gamma.red,
+		    &config_output->gamma.green, &config_output->gamma.blue, &junk) != 3)
+	    {
+		/* check if it's a single floating-point value,
+		 * to be applied to all components */
+		if (sscanf(argv[i], "%f%c", &config_output->gamma.red, &junk) != 1)
+		    argerr ("%s: invalid argument '%s'\n", argv[i-1], argv[i]);
+		config_output->gamma.green = config_output->gamma.blue = config_output->gamma.red;
+	    }
 	    config_output->changes |= changes_gamma;
 	    setit_1_2 = True;
 	    continue;
