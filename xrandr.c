@@ -2979,6 +2979,9 @@ main (int argc, char **argv)
 		    argerr ("%s: invalid argument '%s'\n", argv[i-1], argv[i]);
 		config_output->gamma.green = config_output->gamma.blue = config_output->gamma.red;
 	    }
+	    if (config_output->gamma.red <= 0.0 || config_output->gamma.green <= 0.0 ||
+		    config_output->gamma.blue <= 0.0)
+		    argerr ("gamma correction factors must be positive\n");
 	    config_output->changes |= changes_gamma;
 	    setit_1_2 = True;
 	    continue;
@@ -3030,6 +3033,8 @@ main (int argc, char **argv)
 		    argerr ("failed to parse '%s' as a scaling factor\n", argv[i]);
 		sy = sx;
 	    }
+	    if (sx <= 0.0 || sy <= 0.0)
+		    argerr ("scaling factors must be positive\n");
 	    init_transform (&config_output->transform);
 	    config_output->transform.transform.matrix[0][0] = XDoubleToFixed (sx);
 	    config_output->transform.transform.matrix[1][1] = XDoubleToFixed (sy);
