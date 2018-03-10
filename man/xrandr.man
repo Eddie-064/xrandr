@@ -257,14 +257,25 @@ fit within this size. When this option is not provided, xrandr computes the
 smallest screen size that will hold the set of configured outputs; this
 option provides a way to override that behaviour.
 .IP "\-\-fbmm \fIwidth\fPx\fIheight\fP"
-Sets the reported values for the physical size of the screen. Normally,
+Sets the value reported as physical size of the X screen as a whole
+(union of all configured monitors). In configurations with multiple
+monitors with different DPIs, the value has no physical meaning, but
+it may be used by some legacy clients which do not support RandR
+version 1.2 to compute a reference font scaling. Normally,
 xrandr resets the reported physical size values to keep the DPI constant.
-This overrides that computation.
+This overrides that computation. Default DPI value is 96.
 .IP "\-\-dpi \fIdpi\fP"
 .IP "\-\-dpi \fIfrom-output\fP"
-This also sets the reported physical size values of the screen, it uses either
+This also sets the value reported as physical size of the X screen as a whole
+(union of all configured monitors). In configurations with multiple
+monitors with different DPIs, the value has no physical meaning, but
+it may be used by some legacy clients which do not support RandR
+version 1.2 to compute a reference font scaling. This option uses either
 the specified DPI value, or the DPI of the given output, to compute an appropriate
-physical size using whatever pixel size will be set.
+physical size using whatever pixel size will be set. Typical values are
+the default (96 DPI), the DPI of the only monitor in single-monitor
+configurations, or the DPI of the primary monitor in multi-monitor
+configurations.
 .IP "\-\-newmode \fIname\fP \fImode\fP"
 New modelines can be added to the server and then associated with outputs.
 This option does the former. The \fImode\fP is specified using the ModeLine
