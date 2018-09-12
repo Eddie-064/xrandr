@@ -637,6 +637,7 @@ print_verbose_mode (const XRRModeInfo *mode, Bool current, Bool preferred)
 static void
 init_name (name_t *name)
 {
+    memset(name, 0, sizeof(*name));
     name->kind = name_none;
 }
 
@@ -1822,6 +1823,7 @@ get_outputs (void)
 	output_t	*output;
 	name_t		output_name;
 	if (!output_info) fatal ("could not get output 0x%lx information\n", res->outputs[o]);
+	init_name(&output_name);
 	set_name_xid (&output_name, res->outputs[o]);
 	set_name_index (&output_name, o);
 	set_name_string (&output_name, output_info->name);
