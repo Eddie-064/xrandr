@@ -3642,7 +3642,7 @@ main (int argc, char **argv)
 	}
 
 	get_screen(True);
-	get_monitors(True);
+	get_monitors(False);
 	get_crtcs();
 	get_outputs();
 
