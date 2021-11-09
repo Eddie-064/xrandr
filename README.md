@@ -7,6 +7,16 @@ sudo apt-get install pkg-config
 
 sudo apt-get install xorg-dev
 
+`if install x86-video-dummy`
+```
+issue: error: must install xorg-macros 1.3 or later before running autoconf/autogen
+sudo apt install xutils-dev
+
+issue: syntax error near unexpected token `RANDR,'
+
+sudo apt-get install xorg-dev
+```
+
 reference: 
 
 https://bbs.archlinux.org/viewtopic.php?id=227738
